@@ -1,0 +1,9 @@
+defaults:
+  author:
+    name: Ilia Ilinykh
+    email: Ilia@Ilia.com
+
+email:
+  domains:
+    allowed:
+      - Ilia.com
