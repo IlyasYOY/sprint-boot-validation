@@ -1,31 +1,20 @@
 package com.example.validation.configuration.properties;
 
-import com.example.validation.configuration.annotation.EmailDomains;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Getter
 @Validated
 @ConstructorBinding
 @AllArgsConstructor
-@ConfigurationProperties("defaults")
-public class DefaultsProperties {
+@ConfigurationProperties("email.domains")
+public class EmailDomainsProperties {
     @NotNull
-    Author author;
-
-    @Getter
-    @AllArgsConstructor
-    public static class Author {
-        @NotBlank
-        String name;
-        @NotBlank @Email @EmailDomains
-        String email;
-    }
+    private List<String> allowed;
 }
