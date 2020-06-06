@@ -2,6 +2,8 @@ package com.example.validation.service;
 
 import com.example.validation.controller.dto.CreateNewsDto;
 import com.example.validation.domain.entity.News;
+import com.example.validation.domain.service.AuthorDefaults;
+import com.example.validation.domain.service.factory.AuthorFactory;
 import com.example.validation.model.NewsModel;
 import com.example.validation.repository.NewsRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,9 @@ import java.util.stream.Collectors;
 public class CrudNewsService implements NewsService {
     private final NewsRepository newsRepository;
     private final ConversionService conversionService;
+
+    private final AuthorFactory<AuthorDefaults> defaultsAuthorFactory;
+    private final AuthorDefaults authorDefaults;
 
     @Override
     public Optional<News> findById(String id) {
@@ -34,7 +39,10 @@ public class CrudNewsService implements NewsService {
 
     @Override
     public News save(CreateNewsDto createNewsDto) {
-        NewsModel newsModel = conversionService.convert(createNewsDto, NewsModel.class);
+        News news = conversionService.convert(createNewsDto, News.class)
+                .applyDefaults(authorDefaults, defaultsAuthorFactory);
+
+        NewsModel newsModel = conversionService.convert(news, NewsModel.class);
         NewsModel savedModel = newsRepository.save(newsModel);
         return convertNewsModel(savedModel);
     }

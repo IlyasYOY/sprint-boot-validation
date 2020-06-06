@@ -23,12 +23,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 
-//    implementation 'org.springframework.data:spring-data-mongodb'
-
     compileOnly 'org.projectlombok:lombok'
+    testCompileOnly 'org.projectlombok:lombok'
 
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+
 
     testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
