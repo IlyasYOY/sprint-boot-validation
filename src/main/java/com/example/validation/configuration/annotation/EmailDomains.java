@@ -3,6 +3,7 @@ package com.example.validation.configuration.annotation;
 import com.example.validation.configuration.validation.EmailDomainsValidator;
 
 import javax.validation.Constraint;
+import javax.validation.Payload;
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
@@ -19,9 +20,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Target({METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER})
 @Retention(RUNTIME)
 public @interface EmailDomains {
-    String message() default "{com.example.validation.emaildomains.message}";
+    String message() default "{com.example.validation.configuration.annotation.EmailDomains.message}";
 
-    Class[] groups() default {};
+    Class<?>[] groups() default {};
 
-    Class[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 }

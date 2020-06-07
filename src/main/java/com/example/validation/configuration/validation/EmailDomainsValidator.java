@@ -10,16 +10,20 @@ import javax.validation.ConstraintValidatorContext;
 @RequiredArgsConstructor
 public class EmailDomainsValidator implements ConstraintValidator<EmailDomains, String> {
 
+    public static final String AT_SYMBOL = "@";
+
     private final EmailDomainsProperties emailDomainsProperties;
 
+    @Override
     public void initialize(EmailDomains constraint) {
     }
 
+    @Override
     public boolean isValid(String obj, ConstraintValidatorContext context) {
         return emailDomainsProperties.getAllowed()
                 .stream()
                 .map(String::toLowerCase)
-                .map(it -> "@" + it)
+                .map(it -> AT_SYMBOL + it)
                 .anyMatch(obj.toLowerCase()::endsWith);
     }
 }

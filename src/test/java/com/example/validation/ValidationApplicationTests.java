@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 class ValidationApplicationTests extends BaseTest {
@@ -23,7 +24,19 @@ class ValidationApplicationTests extends BaseTest {
         String file = loadFile("create_news_without_author.json");
         mockMvc.perform(post("/news")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(file))
-                .andDo(print());
+                .content(file)
+        ).andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("Test news creation with authors")
+    void createWithAuthor() throws Exception {
+        String file = loadFile("create_news_with_author.json");
+        mockMvc.perform(post("/news")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(file)
+        ).andDo(print())
+                .andExpect(status().isOk());
     }
 }
