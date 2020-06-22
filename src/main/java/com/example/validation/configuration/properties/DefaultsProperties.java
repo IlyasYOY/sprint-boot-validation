@@ -18,14 +18,14 @@ import javax.validation.constraints.NotNull;
 @ConfigurationProperties("defaults")
 public class DefaultsProperties {
     @NotNull
-    Author author;
+    private Author author;
 
     @Getter
     @AllArgsConstructor
     public static class Author {
         @NotBlank
-        String name;
+        private String name;
         @NotBlank @Email @EmailDomains
-        String email;
+        private String email;
     }
 }

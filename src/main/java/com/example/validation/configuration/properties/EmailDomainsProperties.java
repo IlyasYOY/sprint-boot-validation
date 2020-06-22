@@ -6,8 +6,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 import org.springframework.validation.annotation.Validated;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.NotNull;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Validated
@@ -16,5 +17,11 @@ import java.util.List;
 @ConfigurationProperties("email.domains")
 public class EmailDomainsProperties {
     @NotNull
-    private List<String> allowed;
+    private Set<String> allowed;
+
+    @AssertTrue
+    boolean allDomainsContainDot() {
+        return allowed.stream()
+                .anyMatch(s -> !s.contains("."));
+    }
 }
