@@ -37,6 +37,6 @@ class ValidationApplicationTests extends BaseTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(file)
         ).andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().is4xxClientError());
     }
 }

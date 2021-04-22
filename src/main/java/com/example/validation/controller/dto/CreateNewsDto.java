@@ -8,6 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.FieldDefaults;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Collections;
@@ -23,6 +24,7 @@ public class CreateNewsDto {
     String title;
     @NotBlank
     String text;
+    @Valid
     @Builder.Default
     @JsonProperty("authors")
     List<@NotNull AuthorInfoDto> authorInfoDto = Collections.emptyList();

@@ -1,9 +1,9 @@
 {
   "title": "Your life changed...",
-  "text": "Something will never be the same again.",
-  "author": [
+  "text": "It will never be the same again.",
+  "authors": [
     {
-      "name": "John Doe",
+      "name": "",
       "email": "johndoe@gmail.com"
     }
   ]
